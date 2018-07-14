@@ -31,32 +31,214 @@
 
 <!-- ##### introduction slides ##### -->
 				<section>
-					<h2>f2py: Fortran for Python</h2>
-					<h3>How and why for f2py</h3>
-					<p>
-						<small><a href="http://douglowe.github.io">Douglas Lowe</a> (University of Manchester)</small>
-					</p>
+					<section>
+						<h2>Atmospheric Models using Fortran and Python</h2>
+						<!--<h3>How and why for f2py</h3>-->
+						<p>
+							<small><a href="http://douglowe.github.io">Douglas Lowe</a> (University of Manchester)</small>
+						</p>
+					</section>
+
+					<section>
+						<h3>Schedule</h3>
+						<ul>
+							<li>Atmospheric Science Background</li>
+							<li>Brief history of Atmospheric Modelling</li>
+							<li>Fortran vs Python</li>
+							<li>Example Atmospheric Models</li>
+							<li>f2py under the hood</li>
+						</ul>
+					</section>
+
 				</section>
 
 				<section>
 					<section>
-						<h3>What is f2py?</h3>
+						<h3>introduction to atmos science</h3>
+						<p>general info on areas of interest</p>
+					</section>
+
+					<section>
+						<p> followed by pages on specific details we are interested in (gas-phase chemistry, radiative transfer)</p>
+					</section>
+
+				</section>
+
+
+				<section>
+					<section>
+						<h3>introduction to atmospheric modelling</h3>
+						<p>general info on history of atmos modelling, languages used, etc</p>
+					</section>
+					
+					<section>
+						<p>followed by specific examples of work we've been involved in</p>
+					</section>
+
+					<section>
+						<p>specific example of evolution of solutions: facsimile to kpp to python</p>
+						<p>(possibly move this to later section?)</p>
+					</section>					
+				</section>
+
+
+				<section>
+					<section>
+						<h3>language choice: fortran vs python?</h3>
+					</section>
+
+					<section>
+						<h3>sociological reasons</h3>
+						<ul>
+							<li>code inheritance</li>
+							<li>language support - what are colleagues using?</li>
+						</ul>
+					</section>
+					
+					<section>
+						<h3>Fortran Pros/Cons (as I see them)</h3>
+		
+						<p>Pros:</p>				
+						<ul>
+							<li>speed</li>
+							<li>maths focus</li>
+						</ul>
+
+						<p>Cons:</p>
+						<ul>
+							<li>limited ways of organising data (no dictionaries)</li>
+							<li>text processing is a nightmare</li>
+						</ul>
+
+					</section>
+					
+					<section>
+						<h3>Python Pros/Cons (as I see them)</h3>
+						
+						<p>Pros:</p>
+						<ul>
+							<li>flexibility</li>
+							<li>good syntax? easy to code?</li>
+							<li></li>
+						</ul>
+						
+						<p>Cons:</p>
+						<ul>
+							<li>computational efficiency</li>
+							<ul>
+								<li>speed (but numba?!? more on this later...)</li>
+								<li>parallelisation</li>
+							</ul>
+						</ul>
+						
+					</section>
+				
+					<section>
+						<h3>Solution: use both with f2py</h3>
 						<ul>
 							<li>Fortran to Python interface generator</li>
 							<li>Part of <a href="http://www.numpy.org/">NumPy</a> (numpy.f2py)</li>
 							<li>Also a standalone command line tool when numpy is installed</li>
 							<li>More documentation at <a href="https://docs.scipy.org/doc/numpy/f2py/">SciPy</a></li>
 						</ul>
-					</section>
-
-					<section>
-						<h2>Why f2py?</h2>
 						<ul>
 							<li>Reuse old/legacy code - save time and avoid (new) errors</li>
 							<li>Computational efficiency, for heavyweight mathematical code</li>
 						</ul>
 					</section>
+				
+					<section>
+						<h3>Confession time:</h3>
+						<p>I don't actually use python for my everyday work...</p>
+					</section>
+				
 				</section>
+
+
+				<section>
+					<h3>Example Atmospheric Models</h3>
+					<ul>
+						<li>Climate modelling: <a href="https://github.com/brian-rose/climlab">climlab</a></li>
+						<p>(Brian E. J. Rose, University at Albany, USA)</p>
+						<li>Gas chemistry box model: <a href="https://github.com/loftytopping/PyBox">PyBox</a></li> 
+						<p>(<a href="http://davidtoppingsci.com/">David Topping</a>, University of Manchester)<p>
+						<li>Aerosol chemistry box model: <a href="https://github.com/douglowe/f2py-manic-demo">MANIC</a></li>
+					</ul>
+				</section>
+
+
+
+				<section>
+					<section>
+						<h2><a href="https://github.com/brian-rose/climlab">climlab</a></h2>
+						<p>
+							<small>Created by Brian E. J. Rose (University at Albany, USA)</small>
+						</p>
+					</section>
+
+					<section>
+						<h3>Installation Instructions</h3>
+					</section>
+
+					<section>
+						<h3>Examples</h3>
+					</section>
+
+
+				</section>
+
+
+
+				<section>
+					<section>
+						<h2><a href="https://github.com/loftytopping/PyBox">PyBox</a></h2>
+						<p>
+							<small>Created by <a href="http://davidtoppingsci.com/">David Topping</a></small>
+						</p>
+					</section>
+
+					<section>
+						<h3>Installation Instructions</h3>
+					</section>
+
+					<section>
+						<h3>Examples</h3>
+					</section>
+
+
+				</section>
+
+
+
+				<section>
+					
+					<section>
+						<h2><a href="https://github.com/douglowe/f2py-manic-demo">MANIC</a></h2>
+						<p>
+							<small>Created by <a href="http://douglowe.github.io/">Douglas Lowe</a></small>
+						</p>
+					</section>
+
+					<section>
+						<h3>Installation Instructions</h3>
+					</section>
+					
+					<section>
+						<h3>Examples</h3>
+					</section>
+					
+					
+				</section>
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- ##### basic usage slides ##### -->
@@ -159,31 +341,6 @@ fib.error: (len(a)&gt;=n) failed for 1st keyword n
 
 <!-- ##### example usage slides - real(?) world usage of f2py ##### -->
 
-
-				<section>
-					<h2>Examples</h2>
-				</section>
-
-				<section>
-					<h2><a href="https://github.com/douglowe/f2py-manic-demo">MANIC</a></h2>
-					<p>
-						<small>Created by <a href="http://douglowe.github.io/">Douglas Lowe</a></small>
-					</p>
-				</section>
-
-				<section>
-					<h2><a href="https://github.com/loftytopping/PyBox">PyBox</a></h2>
-					<p>
-						<small>Created by <a href="http://davidtoppingsci.com/">David Topping</a></small>
-					</p>
-				</section>
-
-				<section>
-					<h2><a href="https://github.com/brian-rose/climlab">climlab</a></h2>
-					<p>
-						<small>Created by Brian E. J. Rose (University at Albany, USA)</small>
-					</p>
-				</section>
 
 
 
