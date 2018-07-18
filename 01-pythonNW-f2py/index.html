@@ -24,6 +24,7 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+
 	</head>
 	<body>
 		<div class="reveal">		
@@ -35,103 +36,135 @@
 						<h2>Atmospheric Models using Fortran and Python</h2>
 						<!--<h3>How and why for f2py</h3>-->
 						<p>
-							<small><a href="http://douglowe.github.io">Douglas Lowe</a> (University of Manchester)</small>
+							<small>Douglas Lowe (University of Manchester)</small>
+						</p>
+						<p><small>
+						talk slides: <a href="https://douglowe.github.io/slides/01-pythonNW-f2py/">https://douglowe.github.io/slides/01-pythonNW-f2py/</a>
+						</small></p>
+
+					</section>
+
+					<section>
+
+						<h3>Environment Setup (python 3)</h3>
+
+						<pre><code class="unix">
+conda config --add channels conda-forge
+conda config --add channels openbabel
+conda config --add channels chria
+conda create --name climlab climlab jupyter matplotlib
+conda create --name pybox numpy scipy matplotlib assimulo numba openbabel pandas openmp gcc gfortran_osx-64
+conda create --name manic numpy scipy matplotlib pandas gfortran_osx-64
+git clone https://github.com/brian-rose/climlab
+git clone https://github.com/loftytopping/PyBox.git
+git clone https://github.com/douglowe/f2py-manic-demo.git
+						</code></pre>
+
+						<p><small>
+						talk slides: <a href="https://douglowe.github.io/slides/01-pythonNW-f2py/">https://douglowe.github.io/slides/01-pythonNW-f2py/</a>
+						</small></p>
+
+
+					</section>
+
+				</section>
+
+				<section>
+				
+					<section>					
+						<h3>Atmospheric Composition</h3>
+						<p>(specifically air pollution)</p>
+					
+			        	<div class="l-triple">  
+			              <img class="plain" data-src="img/trash_burning.JPG" alt="Trash burning">
+        			      <img class="plain" data-src="img/bandung_highway.JPG" alt="Traffic">
+        			      <img class="plain" data-src="img/bandung_haze.JPG" alt="Bandung haze">  
+        			    </div>	
+					</section>
+
+					<section>					
+						<p>(from all sources)</p>
+					
+			        	<div class="l-triple">  
+			              <img class="plain" data-src="img/winterhill_fire_plume.JPG" alt="Wildfires">
+        			      <img class="plain" data-src="img/vienna_park.JPG" alt="Vegetation">
+        			      <img class="plain" data-src="img/french_seaspray.JPG" alt="Seaspray">  
+        			    </div>	
+					</section>
+				
+				
+<!---					<section>
+						<h3>Reductionist Atmospheric Science</h3>
+						<p>
+							$${d[Atmosphere] \over d[Time]} = \sum[Processes]$$
 						</p>
 					</section>
+--->
 
 					<section>
-						<h3>Schedule</h3>
-						<ul>
-							<li>Atmospheric Science Background</li>
-							<li>Brief history of Atmospheric Modelling</li>
-							<li>Fortran vs Python</li>
-							<li>Example Atmospheric Models</li>
-							<li>f2py under the hood</li>
-						</ul>
+						<p>
+							$${d[Atmosphere] \over d[Time]} = \sum[Processes]$$
+						</p>
+						<img class="plain" data-src="img/atm_chem_processes.jpg" alt="Aerosol Processes" height="450">
+						<p><small>(aerosol: suspension of particles in a gas)</small></p>
 					</section>
 
-				</section>
-
-				<section>
-					<section>
-						<h3>introduction to atmos science</h3>
-						<p>general info on areas of interest</p>
-					</section>
-
-					<section>
-						<p> followed by pages on specific details we are interested in (gas-phase chemistry, radiative transfer)</p>
-					</section>
 
 				</section>
 
 
+<!---
 				<section>
 					<section>
-						<h3>introduction to atmospheric modelling</h3>
-						<p>general info on history of atmos modelling, languages used, etc</p>
-					</section>
-					
-					<section>
-						<p>followed by specific examples of work we've been involved in</p>
+						<h3>Atmospheric Modelling</h3>
+						<p>regional modelling</p>
+			        	<div class="l-double">  
+						   <img class="plain" data-src="img/manchester_AQ.png" alt="Manchester AQ" height="380">
+						   <img class="plain" data-src="img/model_scales.jpg" alt="Model Scales">
+						</div>
 					</section>
 
+					
 					<section>
-						<p>specific example of evolution of solutions: facsimile to kpp to python</p>
-						<p>(possibly move this to later section?)</p>
-					</section>					
+						<h3>Atmospheric Modelling</h3>
+						<p>process and box modelling</p>
+						<ul>
+							<li>Chemical Box Models</li>
+							<li>Climate Models</li>
+						</ul>
+					</section>
+
+					<section>					
+						<p>Halogen Chemistry</p>
+					
+			        	<div class="l-double">  
+			              <img class="plain" data-src="img/halogen_cycles.jpg" alt="Halogen cycles" height="380">
+        			      <img class="plain" data-src="img/halogen_manic_table.jpg" alt="Halogen Chemistry" height="380">
+        			    </div>	
+					</section>
+
 				</section>
 
+--->				
+
 
 				<section>
-					<section>
-						<h3>language choice: fortran vs python?</h3>
-					</section>
+
 
 					<section>
-						<h3>sociological reasons</h3>
+						<h3>Language Choice</h3>
 						<ul>
-							<li>code inheritance</li>
-							<li>language support - what are colleagues using?</li>
+							<p>Why Fortran?</p>
+							<li>sociological reasons</li>
+							<li>maths focus, and data structures</li>
+							<li>speed and parallelisation</li>
+							<p>Why Python?</p>
+							<li>Flexibility, and data structures</li>
+							<li>Text processing!</li>
+							<li>So many packages</li>
 						</ul>
 					</section>
-					
-					<section>
-						<h3>Fortran Pros/Cons (as I see them)</h3>
-		
-						<p>Pros:</p>				
-						<ul>
-							<li>speed</li>
-							<li>maths focus</li>
-						</ul>
 
-						<p>Cons:</p>
-						<ul>
-							<li>limited ways of organising data (no dictionaries)</li>
-							<li>text processing is a nightmare</li>
-						</ul>
-
-					</section>
-					
-					<section>
-						<h3>Python Pros/Cons (as I see them)</h3>
-						
-						<p>Pros:</p>
-						<ul>
-							<li>flexibility</li>
-							<li>good syntax? easy to code?</li>
-							<li></li>
-						</ul>
-						
-						<p>Cons:</p>
-						<ul>
-							<li>computational efficiency</li>
-							<ul>
-								<li>speed (but numba?!? more on this later...)</li>
-								<li>parallelisation</li>
-							</ul>
-						</ul>
-						
-					</section>
 				
 					<section>
 						<h3>Solution: use both with f2py</h3>
@@ -147,105 +180,36 @@
 						</ul>
 					</section>
 				
+				
+					<section>
+						<h3>But <a href="https://numba.pydata.org/">numba</a>!</h3>
+						
+						<p>numba does provide a much needed speed boost to python code.</p>
+						
+						<ul>
+							<p>However:</p>
+							<li>Not compatible with pandas data structures</li>
+							<li>Still requires special coding, similar to f2py</li>
+						</ul>
+					
+						<aside class="notes">Comparisons between numba and f2py will be provided later</aside>
+					
+					</section>
+				
+				
 					<section>
 						<h3>Confession time:</h3>
-						<p>I don't actually use python for my everyday work...</p>
+						<p>I don't actually use python and f2py for my everyday work...</p>
 					</section>
 				
 				</section>
-
-
-				<section>
-					<h3>Example Atmospheric Models</h3>
-					<ul>
-						<li>Climate modelling: <a href="https://github.com/brian-rose/climlab">climlab</a></li>
-						<p>(Brian E. J. Rose, University at Albany, USA)</p>
-						<li>Gas chemistry box model: <a href="https://github.com/loftytopping/PyBox">PyBox</a></li> 
-						<p>(<a href="http://davidtoppingsci.com/">David Topping</a>, University of Manchester)<p>
-						<li>Aerosol chemistry box model: <a href="https://github.com/douglowe/f2py-manic-demo">MANIC</a></li>
-					</ul>
-				</section>
-
-
-
-				<section>
-					<section>
-						<h2><a href="https://github.com/brian-rose/climlab">climlab</a></h2>
-						<p>
-							<small>Created by Brian E. J. Rose (University at Albany, USA)</small>
-						</p>
-					</section>
-
-					<section>
-						<h3>Installation Instructions</h3>
-					</section>
-
-					<section>
-						<h3>Examples</h3>
-					</section>
-
-
-				</section>
-
-
-
-				<section>
-					<section>
-						<h2><a href="https://github.com/loftytopping/PyBox">PyBox</a></h2>
-						<p>
-							<small>Created by <a href="http://davidtoppingsci.com/">David Topping</a></small>
-						</p>
-					</section>
-
-					<section>
-						<h3>Installation Instructions</h3>
-					</section>
-
-					<section>
-						<h3>Examples</h3>
-					</section>
-
-
-				</section>
-
-
-
-				<section>
-					
-					<section>
-						<h2><a href="https://github.com/douglowe/f2py-manic-demo">MANIC</a></h2>
-						<p>
-							<small>Created by <a href="http://douglowe.github.io/">Douglas Lowe</a></small>
-						</p>
-					</section>
-
-					<section>
-						<h3>Installation Instructions</h3>
-					</section>
-					
-					<section>
-						<h3>Examples</h3>
-					</section>
-					
-					
-				</section>
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- ##### basic usage slides ##### -->
 				<section>
 					
 					<section>
-						<h2>Basic Usage</h2>
+						<h2>Basic f2py Usage</h2>
 						<p>
 							simple usage case from <a href="https://docs.scipy.org/doc/numpy/f2py/getting-started.html">https://docs.scipy.org/doc/numpy/f2py/getting-started.html</a>
 						</p>
@@ -332,6 +296,256 @@ fib.error: (len(a)&gt;=n) failed for 1st keyword n
 				</section>
 
 
+
+<!--- Start of Atmospheric Model Section  --->
+
+				<section>
+					<h3>Example Atmospheric Models</h3>
+					<ul>
+						<li>Climate modelling: <a href="https://github.com/brian-rose/climlab">climlab</a></li>
+						<p>(Brian E. J. Rose, University at Albany, USA)</p>
+						<li>Gas chemistry box model: <a href="https://github.com/loftytopping/PyBox">PyBox</a></li> 
+						<p>(<a href="http://davidtoppingsci.com/">David Topping</a>, University of Manchester)<p>
+						<li>Aerosol chemistry box model: <a href="https://github.com/douglowe/f2py-manic-demo">MANIC</a></li>
+					</ul>
+				</section>
+
+
+
+<!--- climlab --->
+				<section>
+					<section>
+						<h2><a href="https://github.com/brian-rose/climlab">climlab</a></h2>
+						<p>
+							<small>Created by Brian E. J. Rose (University at Albany, USA)</small>
+						</p>
+						
+						<p>"climlab is a flexible engine for process-orientated climate modelling"</p>
+						
+						<p>f2py is used to wrap radiative schemes <a href="http://rtweb.aer.com/rrtm_frame.html">RRTMG</a> 
+						   and <a href:"https://journals.ametsoc.org/doi/full/10.1175/JCLI3760.1">CAM3</a></p>
+					</section>
+
+
+					<section>
+						<h3>Radiative Transfer Models</h3>
+						<img class="plain" data-src="http://www.ipcc.ch/publications_and_data/ar4/wg1/en/fig/faq-1-1-figure-1-l.png" alt="Radiative Transfer" height="450">
+						<p><small>(from <a href:"http://www.ipcc.ch/publications_and_data/ar4/wg1/en/faq-1-1-figure-1.html">IPCC</a>)</small></p>
+					</section>
+
+					<section>
+						<h3>Installation Instructions</h3>
+						<pre><code class="unix">
+conda config --add channels conda-forge
+conda create --name climlab climlab jupyter matplotlib
+git clone https://github.com/brian-rose/climlab
+						</code></pre>
+
+					</section>
+
+					<section>
+						<h3>Examples</h3>
+						<p>Radiative-Convective Equilibrium with CAM3 Scheme</p>
+						<pre><code class="unix">
+jupyter notebook courseware/RCE\ with\ CAM3\ radiation.ipynb
+						</code></pre>
+					</section>
+
+
+					<section>
+						<h3>f2py code</h3>
+						
+						<pre><code class="unix">
+cd climlab/radiation/cam3/
+f2py --overwrite-signature src/shr_kind_mod.F90 src/absems.F90 Driver.f90 -m _cam3 -h _cam3.pyf
+						</code></pre>
+						
+					
+					</section>
+
+
+				</section>
+
+
+<!--- PyBox model --->
+				<section>
+					<section>
+						<h2><a href="https://github.com/loftytopping/PyBox">PyBox</a></h2>
+						<p>
+							<small>Created by <a href="http://davidtoppingsci.com/">David Topping</a></small>
+						</p>
+						<p>"PyBox is a Python based box-model generator and simulator designed for atmospheric chemistry and aerosol studies"</p>
+						
+						<p>Python-based preprocessors generate fortran code from human-readable input files. 
+							f2py is used to generate python modules from this code.</p>
+					</section>
+
+					<section>
+
+						<p>chemical scheme information</p>
+						
+					</section>
+
+					<section>
+						<h3>Installation Instructions</h3>
+						<pre><code class="unix">						
+conda config --add channels chria
+conda config --add channels openbabel
+conda create --name pybox numpy scipy matplotlib assimulo numba openbabel pandas openmp gcc gfortran_osx-64
+git clone https://github.com/loftytopping/PyBox.git
+						</code></pre>
+
+						<p>Edit ODE_solver.py f2py/ODE_solver.py - to remove RodasODE import instruction</p>
+
+						<pre><code class="python">
+from assimulo.solvers import RodasODE, CVode
+						</code></pre>
+						
+
+					</section>
+
+					<section>
+						<h3>Side Note: <a href="https://jmodelica.org/assimulo/">assimulo</a> package also uses f2py (and cpython)</h3>
+						
+						<p>"Assimulo is a simulation package for solving ordinary differential equations. 
+						It is written in the high-level programming language Python and combines a variety of 
+						different solvers written in FORTRAN, C and even Python via a common high-level interface"</p>
+						
+						<p></p>
+					</section>
+
+					<section>
+						<h3>Examples</h3>
+						
+						<p>numba based model:</p>
+						<pre><code class="unix">
+cd ~/PyBox
+python Gas_simulation.py
+						</code></pre>
+						<p>f2py based model:</p>
+						<pre><code class="unix">
+cd ~/PyBox/f2py
+python Gas_simulation_f2py.py
+						</code></pre>
+					</section>
+
+
+					<section>					
+						<h4>Sample Code</h4>
+						<p><small> Human Readable (mechanism_files/MCM_APINENE.eqn.txt): </small></p>
+						<pre><code>
+{1.} APINENE + NO3 = NAPINAO2 : 1.2D-12*EXP(490/TEMP)*0.65 	;
+{2.} APINENE + NO3 = NAPINBO2 : 1.2D-12*EXP(490/TEMP)*0.35 	;
+						</code></pre>
+						<p><small>Fortran (f2py/Rate_coefficients.f90):</small></p>
+						<pre><code class="fortran">
+    rate_values(1) =1.2E-12*EXP(490/TEMP)*0.65 
+    rate_values(2) =1.2E-12*EXP(490/TEMP)*0.35 
+						</code></pre>		
+						<p><small>Python (Rate_coefficients_numba.py):</small></p>
+						<pre><code class="python">
+    rate_values[0] =1.2E-12*numba_exp(490/TEMP)*0.65 
+    rate_values[1] =1.2E-12*numba_exp(490/TEMP)*0.35 
+						</code></pre>					
+					</section>
+					
+
+					<section>
+						<h4>Notes</h4>
+						<ul>
+						<p>Both models need to compile numba or f2py code. Once code is compiled it can be reused,
+							set "files_exist=True" (instead of False) in Gas_simulation[_f2py].py </p>
+						<p>f2py model seems to be roughly x1.6 faster than the numba model</p>
+						</ul>
+					</section>
+
+				</section>
+
+
+
+<!--- MANIC --->
+
+				<section>
+					
+					<section>
+						<h2><a href="https://github.com/douglowe/f2py-manic-demo">MANIC</a></h2>
+						<p>
+							<small>Created by <a href="http://douglowe.github.io/">Douglas Lowe</a></small>
+						</p>
+						
+						<p>Mixed-phase chemical box model. KPP used to generate fortran code from
+							human-readable files. gfortran compiled, with f2py interface.</p>
+						
+					</section>
+					
+					<section>					
+						<p>Halogen Chemistry</p>
+					
+			        	<div class="l-double">  
+			              <img class="plain" data-src="img/halogen_cycles.jpg" alt="Halogen cycles" height="380">
+        			      <img class="plain" data-src="img/halogen_manic_table.jpg" alt="Halogen Chemistry" height="380">
+        			    </div>	
+					</section>
+					
+					
+
+					<section>
+						<h3>Installation Instructions</h3>
+
+						<pre><code class="unix">						
+conda create --name manic numpy scipy matplotlib pandas gfortran_osx-64
+git clone https://github.com/douglowe/f2py-manic-demo.git
+						</code></pre>
+
+						<pre><code class="unix">						
+source activate manic
+cd library_files/MANIC_SourceCode/
+make all
+cd library_files/MANIC_Python_Interface/
+make all
+						</code></pre>
+<p><small>(paths all relative to MANIC root directory)</small></p>
+
+					</section>
+					
+					<section>
+						<h3>Examples</h3>
+						
+						<p>Pure fortran code</p>
+						
+						<pre><code class="unix">
+export DYLD_LIBRARY_PATH=/Users/mbessdl2/anaconda3/envs/pybox/lib/
+cd fortran_model_run_dir/
+../library_files/MANIC_SourceCode/MAP.exe				
+						</code></pre>
+						
+						<p>Mixed python/fortran code</p>
+						
+						<pre><code class="unix">
+unset DYLD_LIBRARY_PATH
+cd python_model_run_dir/
+jupyter notebook manic_test.ipynb
+						</code></pre>
+						
+
+					</section>
+					
+					
+				</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- ##### advanced usage slides ##### -->
 
 				<section>
@@ -339,7 +553,61 @@ fib.error: (len(a)&gt;=n) failed for 1st keyword n
 				</section>
 
 
-<!-- ##### example usage slides - real(?) world usage of f2py ##### -->
+				<section>
+					
+					<section>
+						<h2>Multithreading</h2>
+					
+						<p>Guide on how to check multithread capabilities available on
+						<a href="https://stackoverflow.com/questions/32746104/difficulty-getting-openmp-to-work-with-f2py">stackoverflow</a>
+						</p>
+					</section>
+
+					<section>
+						
+						<p>Create source file OTmod.f90:</p>
+						<pre><code class="fortran">
+module OTmod
+  !$ use omp_lib
+  implicit none
+  public :: get_threads
+contains
+  function get_threads() result(nt)
+    integer :: nt
+    nt = 0
+    !$ nt = omp_get_max_threads()
+  end function get_threads
+end module OTmod
+						</code></pre>
+							
+					</section>
+
+					<section>
+						<p>switch to pybox environment, and compile:</p>
+						<pre><code class="unix">
+root activate pybox
+f2py -m OTfor --fcompiler=gfortran --f90flags='-fopenmp' -lgomp -c OTmod.f90
+						</code></pre>
+						
+						<p>set number of OMP threads (or leave out, to use system default):</p>
+						<pre><code class="unix">
+export OMP_NUM_THREADS=3
+						</code></pre>
+						
+						<p>test in python:</p>
+						<pre><code class="python">
+> python
+>>> from OTfor import otmod
+>>> otmod.get_threads()
+3
+						</code></pre>						
+						
+					</section>
+
+				</section>
+
+
+
 
 
 
@@ -359,7 +627,8 @@ fib.error: (len(a)&gt;=n) failed for 1st keyword n
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/math/math.js', async: true}
 				]
 			});
 		</script>
