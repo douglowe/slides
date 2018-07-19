@@ -54,7 +54,7 @@ conda config --add channels openbabel
 conda config --add channels chria
 conda create --name climlab climlab jupyter matplotlib
 conda create --name pybox numpy scipy matplotlib assimulo numba openbabel pandas openmp gcc gfortran_osx-64
-conda create --name manic numpy scipy matplotlib pandas gfortran_osx-64
+conda create --name manic numpy scipy matplotlib pandas gfortran_osx-64 jupyter
 git clone https://github.com/brian-rose/climlab
 git clone https://github.com/loftytopping/PyBox.git
 git clone https://github.com/douglowe/f2py-manic-demo.git
@@ -358,7 +358,7 @@ fib.error: (len(a)&gt;=n) failed for 1st keyword n
 					<section>
 						<h2><a href="https://github.com/brian-rose/climlab">climlab</a></h2>
 						<p>
-							<small>Created by Brian E. J. Rose (University at Albany, USA)</small>
+							<small>Created by Brian E. J. Rose (University at Albany, USA): <a href="https://joss.theoj.org/papers/6831d26a8ae32c11b8991bb848d0d4e2">JOSS paper</a> </small>
 						</p>
 						
 						<p>"climlab is a flexible engine for process-orientated climate modelling"</p>
@@ -540,7 +540,7 @@ Return objects:
 					<section>
 						<h2><a href="https://github.com/douglowe/f2py-manic-demo">MANIC</a></h2>
 						<p>
-							<small>Created by <a href="http://douglowe.github.io/">Douglas Lowe</a></small>
+							<small>Created by Douglas Lowe: <a href="https://www.atmos-chem-phys.net/9/4559/2009/">ACP paper</a> </small>
 						</p>
 						
 						<p>Mixed-phase chemical box model. 
@@ -574,7 +574,7 @@ Return objects:
 						<h3>Installation Instructions</h3>
 
 						<pre><code class="unix">						
-conda create --name manic numpy scipy matplotlib pandas gfortran_osx-64
+conda create --name manic numpy scipy matplotlib pandas gfortran_osx-64 matplotlib
 git clone https://github.com/douglowe/f2py-manic-demo.git
 						</code></pre>
 
@@ -712,7 +712,7 @@ c_p[MAPP.map_parameters.ind_o3-1] = 20.0e3*cfactor_p
 					<section>
 						<h2><a href="https://github.com/loftytopping/PyBox">PyBox</a></h2>
 						<p>
-							<small>Created by <a href="http://davidtoppingsci.com/">David Topping</a></small>
+							<small>Created by <a href="http://davidtoppingsci.com/">David Topping</a>: <a href="https://joss.theoj.org/papers/3e0ddda0c03c1861f6be629ad514183f">JOSS paper</a> </small>
 						</p>
 						<p>"PyBox is a Python based box-model generator and simulator designed for atmospheric chemistry and aerosol studies"</p>
 						
