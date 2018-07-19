@@ -69,6 +69,9 @@ git clone https://github.com/douglowe/f2py-manic-demo.git
 
 				</section>
 
+
+<!--- Introduction section --->
+
 				<section>
 				
 					<section>					
@@ -79,7 +82,8 @@ git clone https://github.com/douglowe/f2py-manic-demo.git
 			              <img class="plain" data-src="img/trash_burning.JPG" alt="Trash burning">
         			      <img class="plain" data-src="img/bandung_highway.JPG" alt="Traffic">
         			      <img class="plain" data-src="img/bandung_haze.JPG" alt="Bandung haze">  
-        			    </div>	
+        			    </div>
+        			    <aside class="notes"> Interests is in atmospheric composition, specifically AQ</aside>	
 					</section>
 
 					<section>					
@@ -90,6 +94,7 @@ git clone https://github.com/douglowe/f2py-manic-demo.git
         			      <img class="plain" data-src="img/vienna_park.JPG" alt="Vegetation">
         			      <img class="plain" data-src="img/french_seaspray.JPG" alt="Seaspray">  
         			    </div>	
+        			    <aside class="notes"> This is impacted by a wide range of sources / processes - some obvious, some less so</aside>	
 					</section>
 				
 				
@@ -107,57 +112,66 @@ git clone https://github.com/douglowe/f2py-manic-demo.git
 						</p>
 						<img class="plain" data-src="img/atm_chem_processes.jpg" alt="Aerosol Processes" height="450">
 						<p><small>(aerosol: suspension of particles in a gas)</small></p>
+						
+						<aside class="notes">
+							Atmospheric modelling is reductionist - we break up the atmosphere into individual processes
+							which can be represented by differential equations (ordinary or partial) that can be solved in
+							time, and recombined to give us a representation of how the atmosphere behaves	
+						</aside>	
+
 					</section>
 
-
-				</section>
-
-
-<!---
-				<section>
 					<section>
-						<h3>Atmospheric Modelling</h3>
-						<p>regional modelling</p>
+						<p>process and (0-D) box modelling</p>
 			        	<div class="l-double">  
-						   <img class="plain" data-src="img/manchester_AQ.png" alt="Manchester AQ" height="380">
-						   <img class="plain" data-src="img/model_scales.jpg" alt="Model Scales">
+						   <img class="plain" data-src="img/box_model.jpg" alt="Model Scales" height="450">
 						</div>
+						
+						<aside class="notes">
+							At Manchester I started with zero dimensional (box) modelling of mixed-phase chemical processes,
+							testing the chemical schemes...
+						</aside>
+						
 					</section>
 
-					
+
 					<section>
-						<h3>Atmospheric Modelling</h3>
-						<p>process and box modelling</p>
-						<ul>
-							<li>Chemical Box Models</li>
-							<li>Climate Models</li>
-						</ul>
-					</section>
-
-					<section>					
-						<p>Halogen Chemistry</p>
-					
+						<p>regional AQ modelling</p>
 			        	<div class="l-double">  
-			              <img class="plain" data-src="img/halogen_cycles.jpg" alt="Halogen cycles" height="380">
-        			      <img class="plain" data-src="img/halogen_manic_table.jpg" alt="Halogen Chemistry" height="380">
-        			    </div>	
+						   <img class="plain" data-src="img/manchester_AQ.png" alt="Manchester AQ" height="450">
+						</div>
+						
+						<aside class="notes">
+							...that I would then use later in large scale, regional air quality models to 
+							study our environment.
+							
+							All of these models have been written in fortran (or fortran / C mix) - which is 
+							what I use most days at work.
+						</aside>
+						
 					</section>
 
 				</section>
 
---->				
+
 
 
 				<section>
 
 
 					<section>
-						<h3>Language Choice</h3>
+						<h4>Language Choice</h4>
 						<ul>
 							<p>Why Fortran?</p>
 							<li>sociological reasons</li>
 							<li>maths focus, and data structures</li>
 							<li>speed and parallelisation</li>
+						</ul>
+					</section>
+
+					<section>
+						<h4>Language Choice</h4>
+						<ul>
 							<p>Why Python?</p>
 							<li>Flexibility, and data structures</li>
 							<li>Text processing!</li>
@@ -165,51 +179,88 @@ git clone https://github.com/douglowe/f2py-manic-demo.git
 						</ul>
 					</section>
 
+
 				
 					<section>
-						<h3>Solution: use both with f2py</h3>
+						<h4>Solution: use both with f2py</h4>
 						<ul>
 							<li>Fortran to Python interface generator</li>
 							<li>Part of <a href="http://www.numpy.org/">NumPy</a> (numpy.f2py)</li>
 							<li>Also a standalone command line tool when numpy is installed</li>
 							<li>More documentation at <a href="https://docs.scipy.org/doc/numpy/f2py/">SciPy</a></li>
 						</ul>
+<!---
 						<ul>
 							<li>Reuse old/legacy code - save time and avoid (new) errors</li>
 							<li>Computational efficiency, for heavyweight mathematical code</li>
 						</ul>
+--->
 					</section>
 				
 				
 					<section>
-						<h3>But <a href="https://numba.pydata.org/">numba</a>!</h3>
-						
-						<p>numba does provide a much needed speed boost to python code.</p>
+						<h4>But <a href="https://numba.pydata.org/">numba</a>!</h4>
 						
 						<ul>
+							<p>numba does provide a much needed speed boost to python code.</p>
+						
 							<p>However:</p>
 							<li>Not compatible with pandas data structures</li>
-							<li>Still requires special coding, similar to f2py</li>
+							<li>Still requires some special coding considerations</li>
 						</ul>
 					
-						<aside class="notes">Comparisons between numba and f2py will be provided later</aside>
+						<aside class="notes">
+								An alternative to native fortran code, if you just want speed up of
+								new code, is numba. This does provide a speed boost, but still 
+								requires thought when combining with standard python code (and
+								conversion from standard panda data structures).
+						
+								Speed comparisons between numba and f2py will be provided later in one
+								of the example codes.
+						</aside>
 					
 					</section>
 				
 				
 					<section>
-						<h3>Confession time:</h3>
+						<h4>Confession time:</h4>
 						<p>I don't actually use python and f2py for my everyday work...</p>
+						
+						
+						<aside class="notes">
+								I have played around with f2py, but only with an old box model
+								that I don't use any more. So for this talk I'll use a couple of
+								extra examples, from other peoples work, to illustrate some 
+								f2py principles.
+						</aside>
+						
 					</section>
 				
 				</section>
+
+
+<!--- Start of Atmospheric Model Section  --->
+
+				<section>
+					<h3>Example Atmospheric Models</h3>
+					<ul>
+						<li>Climate modelling: <a href="https://github.com/brian-rose/climlab">climlab</a></li>
+						<p>(Brian E. J. Rose, University at Albany, USA)</p>
+						<li>Aerosol chemistry box model: <a href="https://github.com/douglowe/f2py-manic-demo">MANIC</a></li>
+						<p>(Douglas Lowe, University of Manchester)</p>
+						<li>Gas chemistry box model: <a href="https://github.com/loftytopping/PyBox">PyBox</a></li> 
+						<p>(<a href="http://davidtoppingsci.com/">David Topping</a>, University of Manchester)<p>
+					</ul>
+				</section>
+
+
 
 
 <!-- ##### basic usage slides ##### -->
 				<section>
 					
 					<section>
-						<h2>Basic f2py Usage</h2>
+						<h3>Basic f2py Usage</h3>
 						<p>
 							simple usage case from <a href="https://docs.scipy.org/doc/numpy/f2py/getting-started.html">https://docs.scipy.org/doc/numpy/f2py/getting-started.html</a>
 						</p>
@@ -217,7 +268,7 @@ git clone https://github.com/douglowe/f2py-manic-demo.git
 
 
 					<section>
-						<h2>Fortran 77 code</h2>					
+						<h4>Fortran 77 code</h4>					
 						<pre><code class="fortran">
       SUBROUTINE FIB(A,N)
 C     CALCULATE FIRST N FIBONACCI NUMBERS
@@ -297,18 +348,8 @@ fib.error: (len(a)&gt;=n) failed for 1st keyword n
 
 
 
-<!--- Start of Atmospheric Model Section  --->
 
-				<section>
-					<h3>Example Atmospheric Models</h3>
-					<ul>
-						<li>Climate modelling: <a href="https://github.com/brian-rose/climlab">climlab</a></li>
-						<p>(Brian E. J. Rose, University at Albany, USA)</p>
-						<li>Gas chemistry box model: <a href="https://github.com/loftytopping/PyBox">PyBox</a></li> 
-						<p>(<a href="http://davidtoppingsci.com/">David Topping</a>, University of Manchester)<p>
-						<li>Aerosol chemistry box model: <a href="https://github.com/douglowe/f2py-manic-demo">MANIC</a></li>
-					</ul>
-				</section>
+
 
 
 
@@ -353,18 +394,317 @@ jupyter notebook courseware/RCE\ with\ CAM3\ radiation.ipynb
 
 
 					<section>
-						<h3>f2py code</h3>
+						<h3>f2py - signature files</h3>
 						
+						<p>Three modules in climlab/radiation/cam3/ are readable by python, defined by:</p>
 						<pre><code class="unix">
-cd climlab/radiation/cam3/
-f2py --overwrite-signature src/shr_kind_mod.F90 src/absems.F90 Driver.f90 -m _cam3 -h _cam3.pyf
+f2py src/shr_kind_mod.F90 src/absems.F90 Driver.f90 -m _cam3 -h _cam3.pyf
 						</code></pre>
+						<p>Interfaces stored in climlab/radiation/cam3/_cam3.pyf</p>
+					
+					</section>
+
+					<section>
+						<h3>f2py - compilation</h3>
+						<p>utilities in numpy.distutils.core are used for building the modules</p>
+						<p>compiler options and input files are defined in cam3_gen_source 
+						in climlab/radiation/cam3/setup.py, read during the compilation process.</p>
+					</section>
+
+				</section>
+
+
+<!--- advanced signature file usage --->
+
+				<section>
+					
+					<section>
+						<h3>controlling interfaces with f2py</h3>
+						<p>
+							Continuing usage case from <a href="https://docs.scipy.org/doc/numpy/f2py/getting-started.html">https://docs.scipy.org/doc/numpy/f2py/getting-started.html</a>
+						</p>
+
+					</section>
+					
+					
+					<section>
 						
+						<h4>First solution - signature files</h4>
+						
+						<ul>
+							<li>create signature file</li>
+							<pre><code class="unix">
+f2py fib1.f -m fib2 -h fib1.pyf						
+							</code></pre>
+						
+							<li>edit signature file</li>
+
+							<li>compile using signature file</li>
+							<pre><code class="unix">
+f2py -c fib2.pyf fib1.f						
+							</code></pre>
+
+						</ul>
+												
+					</section>
+					
+					
+					<section>
+						<pre><code class="fortran">
+!  auto-generated signature file
+python module fib2 ! in 
+    interface  ! in :fib2
+        subroutine fib(a,n) ! in :fib2:fib1.f
+            real*8 dimension(n) :: a
+            integer optional,check(len(a)>=n),depend(a) :: n=len(a)
+        end subroutine fib
+    end interface 
+end python module fib2
+						</code></pre>
+
+						<pre><code class="fortran">
+! modified file, specifying variable intents
+python module fib2 
+    interface
+        subroutine fib(a,n)
+            real*8 dimension(n),intent(out),depend(n) :: a
+            integer intent(in) :: n
+        end subroutine fib
+    end interface 
+end python module fib2
+						</code></pre>
+
+					</section>
+
+
+					<section>
+					
+						<h4>Better solution - add f2py headers to code</h4>
+					
+					
+						<pre><code class="fortran">
+      SUBROUTINE FIB(A,N)
+      INTEGER N
+      REAL*8 A(N)
+Cf2py intent(in) n
+Cf2py intent(out) a
+Cf2py depend(n) a
+      DO I=1,N
+         IF (I.EQ.1) THEN
+            A(I) = 0.0D0
+         ELSEIF (I.EQ.2) THEN
+            A(I) = 1.0D0
+         ELSE 
+            A(I) = A(I-1) + A(I-2)
+         ENDIF
+      ENDDO
+      END					
+						</code></pre>
+					
 					
 					</section>
 
 
+					<section>
+
+						<h4>Improved python function</h4>
+
+						<pre><code class="python">
+&gt;&gt;&gt; import fib3
+&gt;&gt;&gt; print fib3.fib.__doc__
+fib - Function signature:
+  a = fib(n)
+Required arguments:
+  n : input int
+Return objects:
+  a : rank-1 array('d') with bounds (n)
+
+&gt;&gt;&gt; print fib3.fib(8)
+[  0.   1.   1.   2.   3.   5.   8.  13.]
+						</code></pre>
+
+					</section>
+
 				</section>
+
+
+				
+
+
+
+
+<!--- MANIC --->
+
+				<section>
+					
+					<section>
+						<h2><a href="https://github.com/douglowe/f2py-manic-demo">MANIC</a></h2>
+						<p>
+							<small>Created by <a href="http://douglowe.github.io/">Douglas Lowe</a></small>
+						</p>
+						
+						<p>Mixed-phase chemical box model. 
+							<a href="http://people.cs.vt.edu/asandu/Software/Kpp/">KPP</a>
+							used to generate fortran code from
+							human-readable files. gfortran compiled, with f2py interface.</p>
+						
+					</section>
+					
+					
+					<section>
+						<h4>Basic KPP / ASIT workflow</h4>
+
+						<img class="plain" data-src="img/asit_workflow.jpg" alt="ASIT schematic" height="380">
+						
+					</section>
+					
+					
+					<section>					
+						<h4>Halogen Chemistry</h4>
+					
+			        	<div class="l-double">  
+			              <img class="plain" data-src="img/halogen_cycles.jpg" alt="Halogen cycles" height="380">
+        			      <img class="plain" data-src="img/halogen_manic_table.jpg" alt="Halogen Chemistry" height="380">
+        			    </div>	
+					</section>
+					
+					
+
+					<section>
+						<h3>Installation Instructions</h3>
+
+						<pre><code class="unix">						
+conda create --name manic numpy scipy matplotlib pandas gfortran_osx-64
+git clone https://github.com/douglowe/f2py-manic-demo.git
+						</code></pre>
+
+						<pre><code class="unix">						
+source activate manic
+cd library_files/MANIC_SourceCode/
+make all
+cd library_files/MANIC_Python_Interface/
+make all
+						</code></pre>
+<p><small>(paths all relative to MANIC root directory)</small></p>
+
+					</section>
+
+					<section>
+						<h3>Module Setup Steps</h3>
+
+
+						<img class="plain" data-src="img/manic_f2py_workflow.jpg" alt="MANIC compilation schematic" height="380">
+
+					
+						<p><small>(this method worked well for me - however your mileage may vary)</small></p>
+
+						<aside class="notes">					
+							<li>Majority of fortran modules compiled with native compiler</li>
+							<li>libmapmanic.a library is created using ar tool</li>
+							<li>frontend then compiled with f2py, loading rest of code via library</li>
+						</aside>
+
+					</section>
+					
+					
+					<section>
+						<h4>(off-topic note)</h4>
+					
+						<p><small>
+						The MakeFiles used for this example I wrote after working 
+						through the Software Carpentry
+						<a href="https://swcarpentry.github.io/make-novice/">Automation and Make</a> 
+						course
+						</small></p>
+						<p><small>Following this, self documentation has been included in the files. 
+						For command options for each Makefile use:</small></p>
+						<pre><code class="unix">
+make help
+						</code></pre>
+					
+					</section>
+					
+					<section>
+						<h3>Examples</h3>
+						
+						<p>Pure fortran code</p>
+						
+						<pre><code class="unix">
+export DYLD_LIBRARY_PATH=/Users/mbessdl2/anaconda3/envs/pybox/lib/
+cd fortran_model_run_dir/
+../library_files/MANIC_SourceCode/MAP.exe				
+						</code></pre>
+						
+						<p>Mixed python/fortran code</p>
+						
+						<pre><code class="unix">
+unset DYLD_LIBRARY_PATH
+cd python_model_run_dir/
+jupyter notebook manic_test.ipynb
+						</code></pre>
+						
+					</section>
+					
+					
+					<section>
+						<h3>f2py declarations</h3>
+	
+						<p>MANIC_Python.f90:</p>				
+						<pre><code class="fortran">
+!f2py integer, intent(in) :: N_P_SPEC
+!f2py real(kind=dp_alt), intent(in, out), depend(N_P_SPEC) :: C_P(N_P_SPEC)
+						</code></pre>
+						<p><small>Data type and intent usually not really needed, however dependencies are</small></p>
+
+						<p>MANIC_Monitor.f90:</p>				
+						<pre><code class="fortran">
+  CHARACTER(LEN=20), PARAMETER, DIMENSION(246) :: SPC_NAMES = (/&
+    SPC_NAMES_0, SPC_NAMES_1, SPC_NAMES_2 /)
+
+!f2py character*20 :: spc_names(246)
+						</code></pre>
+						<p><small>In this case, the data type declaration was very important!</small></p>					
+					</section>
+					
+					
+					<section>
+						<h4>2-stage compilation issues</h4>
+					
+						<p><small> necessary duplication in MANIC_Python.f90 of parameter from MANIC_Parameters.f90:</small></p>
+						<pre><code class="fortran">
+! KPP DP - Double precision kind
+INTEGER, PARAMETER :: dp_alt = SELECTED_REAL_KIND(14,300)
+						</code></pre>
+						<p><small>In climlab the parameter module (src/shr_kind_mod.F90) is explicitly passed to f2py to avoid this issue.</small></p>
+						
+					
+					</section>
+					
+					
+					<section>
+						<h4>python variables for f2py</h4> 
+						
+						<p><small>Initialise arrays with a memory order that is fortran compatible:</small></p>
+						<pre><code class="python">					
+c_p = np.zeros(n_p_spec,order='F')
+uedge_p 	= np.array([[-9e-1,1.2e0],[-1.2e0,2.4e0]],order='F') 
+						</code></pre>
+						<p><small>This is essential for multi-dimension arrays</small></p>
+					
+						<p><small>Remember the offset in array indexing!</small></p>
+						<pre><code class="python">
+c_p[MAPP.map_parameters.ind_o3-1] = 20.0e3*cfactor_p
+						</code></pre>
+					
+					</section>
+					
+					
+				</section>
+
+
+
+
+
 
 
 <!--- PyBox model --->
@@ -380,6 +720,17 @@ f2py --overwrite-signature src/shr_kind_mod.F90 src/absems.F90 Driver.f90 -m _ca
 							f2py is used to generate python modules from this code.</p>
 					</section>
 
+
+					<section>
+
+						<h4>Pybox workflow schematic</h4>
+
+						<img class="plain" data-src="img/pybox_schematic.jpg" alt="PyBox Schematic" height="380">
+						
+					</section>
+
+
+
 					<section>
 
 						<p>chemical scheme information</p>
@@ -387,7 +738,7 @@ f2py --overwrite-signature src/shr_kind_mod.F90 src/absems.F90 Driver.f90 -m _ca
 					</section>
 
 					<section>
-						<h3>Installation Instructions</h3>
+						<h4>Installation Instructions</h4>
 						<pre><code class="unix">						
 conda config --add channels chria
 conda config --add channels openbabel
@@ -395,7 +746,7 @@ conda create --name pybox numpy scipy matplotlib assimulo numba openbabel pandas
 git clone https://github.com/loftytopping/PyBox.git
 						</code></pre>
 
-						<p>Edit ODE_solver.py f2py/ODE_solver.py - to remove RodasODE import instruction</p>
+						<p><small>Edit ODE_solver.py f2py/ODE_solver.py - to remove RodasODE import instruction</small></p>
 
 						<pre><code class="python">
 from assimulo.solvers import RodasODE, CVode
@@ -405,17 +756,16 @@ from assimulo.solvers import RodasODE, CVode
 					</section>
 
 					<section>
-						<h3>Side Note: <a href="https://jmodelica.org/assimulo/">assimulo</a> package also uses f2py (and cpython)</h3>
+						<h4>Side Note: <a href="https://jmodelica.org/assimulo/">assimulo</a> package also uses f2py (and cpython)</h4>
 						
-						<p>"Assimulo is a simulation package for solving ordinary differential equations. 
+						<p><small>"Assimulo is a simulation package for solving ordinary differential equations. 
 						It is written in the high-level programming language Python and combines a variety of 
-						different solvers written in FORTRAN, C and even Python via a common high-level interface"</p>
+						different solvers written in FORTRAN, C and even Python via a common high-level interface"</small></p>
 						
-						<p></p>
 					</section>
 
 					<section>
-						<h3>Examples</h3>
+						<h4>Examples</h4>
 						
 						<p>numba based model:</p>
 						<pre><code class="unix">
@@ -452,86 +802,17 @@ python Gas_simulation_f2py.py
 
 					<section>
 						<h4>Notes</h4>
-						<ul>
+						<ul><small>
 						<p>Both models need to compile numba or f2py code. Once code is compiled it can be reused,
 							set "files_exist=True" (instead of False) in Gas_simulation[_f2py].py </p>
 						<p>f2py model seems to be roughly x1.6 faster than the numba model</p>
-						</ul>
+						</small></ul>
 					</section>
 
 				</section>
 
 
 
-<!--- MANIC --->
-
-				<section>
-					
-					<section>
-						<h2><a href="https://github.com/douglowe/f2py-manic-demo">MANIC</a></h2>
-						<p>
-							<small>Created by <a href="http://douglowe.github.io/">Douglas Lowe</a></small>
-						</p>
-						
-						<p>Mixed-phase chemical box model. KPP used to generate fortran code from
-							human-readable files. gfortran compiled, with f2py interface.</p>
-						
-					</section>
-					
-					<section>					
-						<p>Halogen Chemistry</p>
-					
-			        	<div class="l-double">  
-			              <img class="plain" data-src="img/halogen_cycles.jpg" alt="Halogen cycles" height="380">
-        			      <img class="plain" data-src="img/halogen_manic_table.jpg" alt="Halogen Chemistry" height="380">
-        			    </div>	
-					</section>
-					
-					
-
-					<section>
-						<h3>Installation Instructions</h3>
-
-						<pre><code class="unix">						
-conda create --name manic numpy scipy matplotlib pandas gfortran_osx-64
-git clone https://github.com/douglowe/f2py-manic-demo.git
-						</code></pre>
-
-						<pre><code class="unix">						
-source activate manic
-cd library_files/MANIC_SourceCode/
-make all
-cd library_files/MANIC_Python_Interface/
-make all
-						</code></pre>
-<p><small>(paths all relative to MANIC root directory)</small></p>
-
-					</section>
-					
-					<section>
-						<h3>Examples</h3>
-						
-						<p>Pure fortran code</p>
-						
-						<pre><code class="unix">
-export DYLD_LIBRARY_PATH=/Users/mbessdl2/anaconda3/envs/pybox/lib/
-cd fortran_model_run_dir/
-../library_files/MANIC_SourceCode/MAP.exe				
-						</code></pre>
-						
-						<p>Mixed python/fortran code</p>
-						
-						<pre><code class="unix">
-unset DYLD_LIBRARY_PATH
-cd python_model_run_dir/
-jupyter notebook manic_test.ipynb
-						</code></pre>
-						
-
-					</section>
-					
-					
-				</section>
 
 
 
@@ -541,16 +822,7 @@ jupyter notebook manic_test.ipynb
 
 
 
-
-
-
-
-
-<!-- ##### advanced usage slides ##### -->
-
-				<section>
-					<h2>Advanced Usage</h2>
-				</section>
+<!-- ##### multithreading slides ##### -->
 
 
 				<section>
